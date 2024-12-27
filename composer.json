@@ -1,7 +1,7 @@
 {
   "name": "davasrk/admin.detailpage",
   "description": "bitrix module for customisation of editing iblock elements pages",
-  "type": "bitrix-module",
+  "type": "bitrix-d7-module",
   "keywords": [
     "bitrix",
     "admin customise",
