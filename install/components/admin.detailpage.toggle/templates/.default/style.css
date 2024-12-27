@@ -1,0 +1,22 @@
+.toggle-top {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #dce7ed;
+    display: flex;
+}
+    .toggle-top .adm-detail-title {
+        padding: 10px 0 10px 20px;
+        width: 100%;
+    }
+    .toggle-top .adm-detail-title-setting-btn {
+        cursor: pointer;
+        margin: 10px 20px;
+    }
+
+.toggle-content {
+    border: 1px solid #dce7ed;
+    border-top: 0;
+    min-height: 20px;
+    padding: 19px;
+}
+    .toggle-content > table { width: 100%; }
