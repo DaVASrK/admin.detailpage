@@ -73,7 +73,7 @@ class Field extends AbstractField
     protected function isCanShow(bool|\Closure $value = true): bool
     {
         global $USER;
-        if ($USER->isAdmin()) {
+        if ($USER->isAdmin() && !empty($this->params)) {
             return true;
         }
 
