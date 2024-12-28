@@ -10,15 +10,15 @@ class TwoColumns extends AbstractBlock
     const COLUMNS_COUNT = 2;
     protected array $columns = [];
 
-    public function __construct(array $columns, string $id = null)
+    public function __construct(array $firstColumn, array $secondColumn, string $id = null)
     {
         parent::__construct($id);
 
-        if (!$this->validate($columns)) {
+        if (!$this->validate([$firstColumn, $secondColumn])) {
             throw new \InvalidArgumentException('Unsupported type of field');
         }
 
-        $this->columns = $columns;
+        $this->columns = [$firstColumn, $secondColumn];
     }
 
     public function getTemplate(): string
