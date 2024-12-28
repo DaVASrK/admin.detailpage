@@ -8,7 +8,6 @@ use DVK\Admin\DetailPage\GlobalValue;
 class Field extends AbstractField
 {
     protected readonly \CAdminForm $tabControl;
-    protected int $id;
     protected array $params;
 
     public function __construct(string $code)
@@ -89,6 +88,7 @@ class Field extends AbstractField
 
     protected function getProperty(): array
     {
+        echo '<pre>'; var_dump(GlobalValue::get('PROP')); echo '</pre>';
         foreach (GlobalValue::get('PROP') as $property) {
             if ($this->code === $property['CODE']) { return $property; }
         }
