@@ -1,5 +1,6 @@
 .tabs-header.adm-detail-tabs-block {
     display: flex;
+    margin-top: 20px;
     padding-right: 0;
 }
 
