@@ -6,6 +6,7 @@
 }
     .toggle-top .adm-detail-title {
         padding: 10px 0 10px 20px;
+        text-align: left;
         width: 100%;
     }
     .toggle-top .adm-detail-title-setting-btn {
