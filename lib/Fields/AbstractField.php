@@ -8,6 +8,7 @@ use DVK\Admin\DetailPage\GlobalValue;
 abstract class AbstractField implements IField
 {
     protected readonly \CAdminForm $tabControl;
+    protected int $id;
     protected string $name;
     protected string $code;
     protected mixed $value = null;
@@ -130,9 +131,9 @@ abstract class AbstractField implements IField
     {
         if (!$this->isCanShow($value)) { return; }
 
-        $this->tabControl->BeginCustomField($this->code, $this->name . ':', $this->required);
+        $this->tabControl->BeginCustomField($this->id ?? $this->code, $this->name . ':', $this->required);
         echo $this->getTemplate();
-        $this->tabControl->EndCustomField($this->code, $this->getHidden());
+        $this->tabControl->EndCustomField($this->id ?? $this->code, $this->getHidden());
     }
 
 
