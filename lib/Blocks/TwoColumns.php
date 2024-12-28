@@ -7,7 +7,6 @@ use DVK\Admin\DetailPage\Fields\AbstractField;
 
 class TwoColumns extends AbstractBlock
 {
-    const COLUMNS_COUNT = 2;
     protected array $columns = [];
 
     public function __construct(array $firstColumn, array $secondColumn, string $id = null)
@@ -27,9 +26,9 @@ class TwoColumns extends AbstractBlock
 
         $view = '<tr>';
 
-        for ($i = 0; $i < self::COLUMNS_COUNT; $i++) {
+        foreach ($this->columns as $column) {
             $view .= '<td class="adm-detail-valign-top" style="width: 50%"><table width="100%"><tbody>';
-            foreach ($this->columns[$i] as $field) {
+            foreach ($column as $field) {
                 $view .= $field->getTemplate();
             }
             $view .= '</tbody></table></td>';
@@ -42,8 +41,8 @@ class TwoColumns extends AbstractBlock
 
     protected function validate(array $columns): bool
     {
-        for ($i = 0; $i < self::COLUMNS_COUNT; $i++) {
-            foreach ($columns[$i] as $field) {
+        foreach ($columns as $column) {
+            foreach ($column as $field) {
                 if (!$field instanceof AbstractField &&
                     !$field instanceof AbstractBlock &&
                     !$field instanceof ITemplate
