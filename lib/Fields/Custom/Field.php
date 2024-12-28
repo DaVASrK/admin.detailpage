@@ -88,6 +88,7 @@ class Field extends AbstractField
 
     protected function getProperty(): array
     {
+        echo '<pre>'; var_dump(GlobalValue::get('PROP')); echo '</pre>';
         foreach (GlobalValue::get('PROP') as $property) {
             if ($this->code === $property['CODE']) { return $property; }
         }
