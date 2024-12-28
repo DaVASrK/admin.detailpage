@@ -8,6 +8,14 @@ class Block
 {
     protected static ?string $id = null;
 
+
+    public static function __callStatic($name, $arguments): void
+    {
+        $className = self::getClassName(ucfirst($name));
+
+        (new $className(...$arguments))->show();
+    }
+
     public static function start(): void
     {
         if (self::$id !== null) {
@@ -29,48 +37,25 @@ class Block
         self::$id = null;
     }
 
-    public static function delimiter(): void
-    {
-        (new Delimiter())->show();
-    }
 
-    public static function seo(): void
+    protected static function getClassName(string $name): string
     {
-        (new SeoBlock())->show();
-    }
+        $class = '';
 
-    public static function section($text, $id = null): void
-    {
-        (new Section($text, $id))->show();
-    }
+        $className      = 'DVK\Admin\DetailPage\Blocks\\' . $name;
+        $classNameBlock = 'DVK\Admin\DetailPage\Blocks\\' . $name . 'Block';
 
-    public static function twoColumns($columns, $id = null): void
-    {
-        (new TwoColumns($columns, $id))->show();
-    }
+        if (class_exists($className)) {
+            $class = $className;
+        }
+        if (class_exists($classNameBlock)) {
+            $class = $classNameBlock;
+        }
 
-    public static function component(string $componentName, string $template = '.default', array $params = [], string $id = null): void
-    {
-        (new Component($componentName, $template, $params, $id))->show();
-    }
+        if (!$class) {
+            throw new \Exception('Block "' . $name . '" does not exist');
+        }
 
-    public static function html(string $content, string $id = null): void
-    {
-        (new HtmlBlock($content, $id))->show();
-    }
-
-    public static function toggle(string $title, array $fields = [], string $id = null): void
-    {
-        (new ToggleBlock($title, $fields, $id))->show();
-    }
-
-    public static function stepper(array $steps, bool $showTitle = true, string $id = null): void
-    {
-        (new StepperBlock($steps, $showTitle, $id))->show();
-    }
-
-    public static function tabs(array $tabs, string $id = null): void
-    {
-        (new TabsBlock($tabs, $id))->show();
+        return $class;
     }
 }
